@@ -24,11 +24,10 @@ if not pcall(require, "lazy") then
 end
 
 require "lazy_setup"
-require "polish"
 
 if vim.g.vscode then
   -- Disable cursorline highlight in VSCode-Neovim
   vim.opt.cursorline = false
-  vim.cmd([[highlight CursorLine guibg=NONE gui=NONE]])
+  vim.cmd [[highlight CursorLine guibg=NONE gui=NONE]]
 end
-require("custom.keymaps")
+require "custom.keymaps"

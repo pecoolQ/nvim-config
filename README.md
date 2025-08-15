@@ -27,8 +27,30 @@ You can also just clone this repository directly if you do not want to track you
 git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
 ```
 
+## 🔧 Required Tools (Install with Chocolatey)
+
+Make sure you have [Chocolatey](https://chocolatey.org/install) installed first.
+
+Then run the following in an **Administrator PowerShell**:
+
+```powershell
+choco install -y neovim
+choco install -y ripgrep fzf nerd-fonts-firacode
+choco install -y nodejs
+npm install -g pyright
+```
+### Tools Explained:
+- `ripgrep` - Required for Telescope and fzf-lua live grep
+- `fzf` - Fuzzy Finder backend used by fzf-lua
+- `pyright` - Python language server (for LSP support)
+- `fd` - Used by Telescope and fzf-lua for fast file finding
+- `bat` - Used by fzf-lua for previewing files in finder
+
+
 #### Start Neovim
 
 ```shell
 nvim
 ```
+
+
