@@ -24,11 +24,24 @@ if not pcall(require, "lazy") then
 end
 
 require "lazy_setup"
-require "polish"
 
 if vim.g.vscode then
-  -- Disable cursorline highlight in VSCode-Neovim
-  vim.opt.cursorline = false
-  vim.cmd([[highlight CursorLine guibg=NONE gui=NONE]])
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+      vim.opt.cursorline = false
+      vim.opt.hlsearch = false
+      vim.cmd [[highlight CursorLine guibg=NONE gui=NONE]]
+      vim.cmd [[highlight Visual guibg=NONE]]
+    end,
+  })
+
+  -- Disable Treesitter highlights to avoid rendering conflicts
+  require("nvim-treesitter.configs").setup {
+    highlight = {
+      enable = false,
+    }
+  }
 end
-require("custom.keymaps")
+
+
+require "custom.keymaps"
