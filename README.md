@@ -34,9 +34,7 @@ Make sure you have [Chocolatey](https://chocolatey.org/install) installed first.
 Then run the following in an **Administrator PowerShell**:
 
 ```powershell
-choco install -y neovim
-choco install -y ripgrep fzf nerd-fonts-firacode
-choco install -y nodejs
+choco install -y neovim ripgrep fzf nerd-fonts-firacode nodejs
 npm install -g pyright
 ```
 ### Tools Explained:
