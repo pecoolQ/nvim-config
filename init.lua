@@ -26,6 +26,17 @@ end
 require "lazy_setup"
 
 if vim.g.vscode then
+  require("lazy").setup({
+    { "hkupty/iron.nvim", enabled = false },
+    { "williamboman/mason.nvim", enabled = false },
+    { "nvimtools/none-ls.nvim", enabled = false },
+    { "hrsh7th/nvim-cmp", enabled = false },
+    { "nvim-neotest/nvim-nio", enabled = false },
+    { "nvim-telescope/telescope.nvim", enabled = false },
+    { "catppuccin/nvim", enabled = false },
+    { "AstroNvim/astrotheme", enabled = false },
+  }, { change_detection = { enabled = false } })
+
   vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function()
       vim.opt.cursorline = false
@@ -44,4 +55,12 @@ if vim.g.vscode then
 end
 
 
+
 require "custom.keymaps"
+return {
+  features = {
+    icons = {
+      enabled = false,
+    },
+  },
+}
