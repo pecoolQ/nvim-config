@@ -1,4 +1,3 @@
-
 -- Customize Mason
 
 ---@type LazySpec
@@ -11,20 +10,13 @@ return {
       -- Make sure to use the names found in `:Mason`
       ensure_installed = {
         -- install language servers
-        "lua-language-server", 
+        "lua-language-server",
 
         -- Python -1
         "pyright",
-		"black",
-        "debugpy",
         "mypy",
-        "ruff-lsp",
-
         -- install formatters
         "stylua",
-
-        -- install debuggers
-        "debugpy",
       },
     },
   },

@@ -24,11 +24,47 @@ if not pcall(require, "lazy") then
 end
 
 require "lazy_setup"
-require "polish"
 
 if vim.g.vscode then
-  -- Disable cursorline highlight in VSCode-Neovim
-  vim.opt.cursorline = false
-  vim.cmd([[highlight CursorLine guibg=NONE gui=NONE]])
+  -- Silence Neovim diagnostics completely
+  vim.diagnostic.disable()
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+  require("lazy").setup({
+    { "hkupty/iron.nvim", enabled = false },
+    { "williamboman/mason.nvim", enabled = false },
+    { "nvimtools/none-ls.nvim", enabled = false },
+    { "hrsh7th/nvim-cmp", enabled = false },
+    { "nvim-neotest/nvim-nio", enabled = false },
+    { "nvim-telescope/telescope.nvim", enabled = false },
+    { "catppuccin/nvim", enabled = false },
+    { "AstroNvim/astrotheme", enabled = false },
+  }, { change_detection = { enabled = false } })
+
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+      vim.opt.cursorline = false
+      vim.opt.hlsearch = false
+      vim.cmd [[highlight CursorLine guibg=NONE gui=NONE]]
+      vim.cmd [[highlight Visual guibg=NONE]]
+    end,
+  })
+
+  -- Disable Treesitter highlights to avoid rendering conflicts
+  require("nvim-treesitter.configs").setup {
+    highlight = {
+      enable = false,
+    }
+  }
 end
-require("custom.keymaps")
+
+
+
+require "custom.keymaps"
+return {
+  features = {
+    icons = {
+      enabled = false,
+    },
+  },
+}
+

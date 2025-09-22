@@ -1,7 +1,3 @@
---if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
--- Customize Treesitter
-
 ---@type LazySpec
 return { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
