@@ -134,6 +134,17 @@ keybinding.json
     "key": "alt+oem_5",
     "command": "-editor.action.inlineSuggest.trigger",
     "when": "editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+ {
+    "key": "ctrl+a",
+    "command": "editor.action.selectAll",
+    "when": "editorTextFocus && neovim.mode == 'insert'"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != 'insert'",
+    "args": "<C-a>"
   }
 ]
 
