@@ -45,6 +45,24 @@ npm install -g pyright
 - `bat` - Used by fzf-lua for previewing files in finder
 
 
+## 🔧 Required Tools (Install with Chocolatey)
+
+Make sure you have [Chocolatey](https://chocolatey.org/install) installed first.
+
+Then run the following in an **Administrator PowerShell**:
+
+```powershell
+choco install -y neovim ripgrep fzf nerd-fonts-firacode nodejs
+npm install -g pyright
+```
+### Tools Explained:
+- `ripgrep` - Required for Telescope and fzf-lua live grep
+- `fzf` - Fuzzy Finder backend used by fzf-lua
+- `pyright` - Python language server (for LSP support)
+- `fd` - Used by Telescope and fzf-lua for fast file finding
+- `bat` - Used by fzf-lua for previewing files in finder
+
+
 #### Start Neovim
 
 ```shell
