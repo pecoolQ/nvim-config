@@ -68,31 +68,7 @@ npm install -g pyright
 ```shell
 nvim
 ```
-user json
-{
-    "git.autofetch": true,
-    "window.zoomLevel": 0,
-    "editor.padding.top": 8,
-    "editor.stickyScroll.enabled": false,
-    "github.copilot.nextEditSuggestions.enabled": false,
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
-    "python.analysis.diagnosticsSource": "Pyright",
-    "editor.fontFamily": "FiraCode Nerd Font, Consolas, 'Courier New', monospace",
-    "editor.fontLigatures": true,
-    "editor.semanticHighlighting.enabled": false,
-    "workbench.colorTheme": "Monokai Dimmed",
-    "explorer.confirmDragAndDrop": false,
-
-    "editor.inlineSuggest.enabled": false,
-    "editor.inlayHints.enabled": "off",   
-    "editor.codeLens": false,             
-    "editor.scrollBeyondTop": false,
-    "window.customTitleBarVisibility": "windowed"
-}
-
-keybinding.json 
+ ### keybinding.json 
 // Place your key bindings in this file to override the defaults
 [
   // Let VS Code handle copy/paste in INSERT mode
