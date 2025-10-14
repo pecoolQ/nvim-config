@@ -70,7 +70,7 @@ nvim
 ```
  ### keybinding.json 
 // Place your key bindings in this file to override the defaults
-'''json
+```json
 [
   // Let VS Code handle copy/paste in INSERT mode
   {
@@ -124,4 +124,4 @@ nvim
     "args": "<C-a>"
   }
 ]
-'''
+```
