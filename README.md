@@ -125,3 +125,48 @@ nvim
   }
 ]
 ```
+### User settings  
+Use this for removing double highlights
+```json
+{
+    "git.autofetch": true,
+    "window.zoomLevel": 0,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.padding.top": 8,
+    "editor.stickyScroll.enabled": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "python.analysis.diagnosticsSource": "Pyright",
+    "editor.fontFamily": "FiraCode Nerd Font, Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Catppuccin Alt Mocha",
+    "explorer.confirmDragAndDrop": false,
+    
+    // ---- Python diagnostics (Pyright/Pylance)
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "none",
+    "reportOptionalMemberAccess": "none",
+    "reportOptionalSubscript": "none",
+    "reportOptionalCall": "none",
+    "reportAttributeAccessIssue": "none",
+    "reportArgumentType": "none",
+    "reportAssignmentType": "none",
+    "reportCallIssue": "none",
+    "reportIndexIssue": "none",
+    "reportOptionalIterable": "none",
+    "reportOptionalOperand": "none",
+    "reportOperatorIssue": "none",
+    "reportPossiblyUnboundVariable": "none"
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
+
+}
+```
