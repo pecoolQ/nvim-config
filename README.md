@@ -122,7 +122,12 @@ nvim
     "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.mode != 'insert'",
     "args": "<C-a>"
-  }
+  },
+  {
+        "key": "alt+o",
+        "command": "github.copilot.completions.toggle",
+        "when": "github.copilot.activated"
+   }
 ]
 ```
 ### User settings  
