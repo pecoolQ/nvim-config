@@ -1,5 +1,36 @@
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
+-- ── VS Code: keep it minimal, let VS Code handle LSP/highlighting ─────────────
+
+
+require "custom.keymaps"
+if vim.g.vscode then
+  -- Stop any diagnostics/LSP from Neovim
+  pcall(vim.diagnostic.disable)
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+  for _, c in pairs(vim.lsp.get_clients({})) do
+    pcall(function() c.stop(true) end)
+  end
+
+  -- Kill syntax & search/visual highlights so nothing “bleeds” into VS Code
+  vim.cmd([[
+    syntax off
+    filetype off
+    set nohlsearch
+    set nocursorline
+  ]])
+
+  -- Guard against built-ins trying to style things
+  vim.g.loaded_matchparen = 1
+  vim.g.loaded_netrwPlugin = 1
+  vim.g.loaded_tarPlugin = 1
+  vim.g.loaded_zipPlugin = 1
+
+  -- Nothing else should run for VS Code
+  return
+end
+-- ───────────────────────────────────────────────────────────────────────────────
+
 local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 if not (vim.env.LAZY or (vim.uv or vim.loop).fs_stat(lazypath)) then
@@ -25,41 +56,7 @@ end
 
 require "lazy_setup"
 
-if vim.g.vscode then
-  -- Silence Neovim diagnostics completely
-  vim.diagnostic.disable()
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
-  require("lazy").setup({
-    { "hkupty/iron.nvim", enabled = false },
-    { "williamboman/mason.nvim", enabled = false },
-    { "nvimtools/none-ls.nvim", enabled = false },
-    { "hrsh7th/nvim-cmp", enabled = false },
-    { "nvim-neotest/nvim-nio", enabled = false },
-    { "nvim-telescope/telescope.nvim", enabled = false },
-    { "catppuccin/nvim", enabled = false },
-    { "AstroNvim/astrotheme", enabled = false },
-  }, { change_detection = { enabled = false } })
 
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-      vim.opt.cursorline = false
-      vim.opt.hlsearch = false
-      vim.cmd [[highlight CursorLine guibg=NONE gui=NONE]]
-      vim.cmd [[highlight Visual guibg=NONE]]
-    end,
-  })
-
-  -- Disable Treesitter highlights to avoid rendering conflicts
-  require("nvim-treesitter.configs").setup {
-    highlight = {
-      enable = false,
-    }
-  }
-end
-
-
-
-require "custom.keymaps"
 return {
   features = {
     icons = {
@@ -67,4 +64,3 @@ return {
     },
   },
 }
-
