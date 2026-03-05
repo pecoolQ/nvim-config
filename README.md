@@ -33,7 +33,25 @@ Make sure you have [Chocolatey](https://chocolatey.org/install) installed first.
 
 Then run the following in an **Administrator PowerShell**:
 
-``` PowerShell 
+```powershell
+choco install -y neovim ripgrep fzf nerd-fonts-firacode nodejs
+npm install -g pyright
+```
+### Tools Explained:
+- `ripgrep` - Required for Telescope and fzf-lua live grep
+- `fzf` - Fuzzy Finder backend used by fzf-lua
+- `pyright` - Python language server (for LSP support)
+- `fd` - Used by Telescope and fzf-lua for fast file finding
+- `bat` - Used by fzf-lua for previewing files in finder
+
+
+## 🔧 Required Tools (Install with Chocolatey)
+
+Make sure you have [Chocolatey](https://chocolatey.org/install) installed first.
+
+Then run the following in an **Administrator PowerShell**:
+
+```powershell
 choco install -y neovim ripgrep fzf nerd-fonts-firacode nerd-fonts-jetbrainsmono nodejs
 npm install -g pyright
 ```
@@ -50,5 +68,110 @@ npm install -g pyright
 ```shell
 nvim
 ```
+ ### keybinding.json 
+// Place your key bindings in this file to override the defaults
+```json
+[
+  // Let VS Code handle copy/paste in INSERT mode
+  {
+    "key": "ctrl+c",
+    "command": "editor.action.clipboardCopyAction",
+    "when": "editorTextFocus && neovim.mode == 'insert'"
+  },
+  {
+    "key": "ctrl+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "editorTextFocus && neovim.mode == 'insert'"
+  },
 
+  // Forward to Neovim in NORMAL/VISUAL mode
+  {
+    "key": "ctrl+c",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != 'insert'",
+    "args": "<C-c>"
+  },
+  {
+    "key": "ctrl+v",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != 'insert'",
+    "args": "<C-v>"
+  },
+  {
+  "key": "ctrl+alt+i",
+  "command": "editor.action.inlineSuggest.toggle",
+  "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+o",
+    "command": "editor.action.inlineSuggest.trigger",
+    "when": "editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+  {
+    "key": "alt+oem_5",
+    "command": "-editor.action.inlineSuggest.trigger",
+    "when": "editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+ {
+    "key": "ctrl+a",
+    "command": "editor.action.selectAll",
+    "when": "editorTextFocus && neovim.mode == 'insert'"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != 'insert'",
+    "args": "<C-a>"
+  },
+  {
+        "key": "alt+o",
+        "command": "github.copilot.completions.toggle",
+        "when": "github.copilot.activated"
+   }
+]
+```
+### User settings  
+Use this for removing double highlights
+```json
+{
+    "git.autofetch": true,
+    "window.zoomLevel": 0,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.padding.top": 8,
+    "editor.stickyScroll.enabled": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "python.analysis.diagnosticsSource": "Pyright",
+    "editor.fontFamily": "FiraCode Nerd Font, Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Catppuccin Alt Mocha",
+    "explorer.confirmDragAndDrop": false,
+    
+    // ---- Python diagnostics (Pyright/Pylance)
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "none",
+    "reportOptionalMemberAccess": "none",
+    "reportOptionalSubscript": "none",
+    "reportOptionalCall": "none",
+    "reportAttributeAccessIssue": "none",
+    "reportArgumentType": "none",
+    "reportAssignmentType": "none",
+    "reportCallIssue": "none",
+    "reportIndexIssue": "none",
+    "reportOptionalIterable": "none",
+    "reportOptionalOperand": "none",
+    "reportOperatorIssue": "none",
+    "reportPossiblyUnboundVariable": "none"
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 
+}
+```
