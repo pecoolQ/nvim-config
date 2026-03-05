@@ -1,23 +1,24 @@
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
 -- ── VS Code: keep it minimal, let VS Code handle LSP/highlighting ─────────────
--- Load your keymaps no matter what ( works in vscode too)
+
+
 require "custom.keymaps"
 if vim.g.vscode then
   -- Stop any diagnostics/LSP from Neovim
   pcall(vim.diagnostic.disable)
   vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
-  for _, c in pairs(vim.lsp.get_clients {}) do
+  for _, c in pairs(vim.lsp.get_clients({})) do
     pcall(function() c.stop(true) end)
   end
 
   -- Kill syntax & search/visual highlights so nothing “bleeds” into VS Code
-  vim.cmd [[
+  vim.cmd([[
     syntax off
     filetype off
     set nohlsearch
     set nocursorline
-  ]]
+  ]])
 
   -- Guard against built-ins trying to style things
   vim.g.loaded_matchparen = 1
@@ -54,6 +55,7 @@ if not pcall(require, "lazy") then
 end
 
 require "lazy_setup"
+
 
 return {
   features = {
