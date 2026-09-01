@@ -14,3 +14,4 @@ vim.keymap.set("i", "<C-v>", "<C-r>+", { desc = "Paste from system clipboard (in
 
 -- Cut to system clipboard
 vim.keymap.set("v", "<C-x>", '"+d', { desc = "Cut to system clipboard" })
+vim.opt.clipboard = "unnamedplus"

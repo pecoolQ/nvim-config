@@ -8,6 +8,14 @@ return {
         cmdline = { icon = ":" },
       },
     },
+    lsp = {
+      hover = {
+        enabled = false,
+      },
+      signature = {
+        enabled = false,
+      },
+    },
   },
   dependencies = {
     "MunifTanjim/nui.nvim",
